@@ -1,0 +1,24 @@
+\contentsline {chapter}{\numberline {1}Introduction}{1}
+\contentsline {section}{\numberline {1.1}Background}{1}
+\contentsline {section}{\numberline {1.2}Contents}{2}
+\contentsline {chapter}{\numberline {2}Literature Review}{3}
+\contentsline {section}{\numberline {2.1}Skin Based Approach}{3}
+\contentsline {subsection}{\numberline {2.1.1}Skin Color Detection Method}{3}
+\contentsline {subsubsection}{Color Spaces}{4}
+\contentsline {subsubsection}{The RGB Color Space}{4}
+\contentsline {subsubsection}{The HSV Color Space}{4}
+\contentsline {subsubsection}{The YCbCr Color Spacr}{5}
+\contentsline {section}{\numberline {2.2}Non Skin Based Approach}{5}
+\contentsline {subsection}{\numberline {2.2.1}BIC}{5}
+\contentsline {subsection}{\numberline {2.2.2}MPEG-7}{6}
+\contentsline {subsubsection}{Dominant ColorDescriptor}{6}
+\contentsline {subsubsection}{DCD Extraction}{7}
+\contentsline {subsubsection}{Edge Histogram Descriptor}{7}
+\contentsline {subsection}{\numberline {2.2.3}Edge and Moment Appraoch}{8}
+\contentsline {subsubsection}{Edge Detection}{8}
+\contentsline {subsubsection}{Classical Edge Detectors}{8}
+\contentsline {subsubsection}{Sobel Edge Detector}{9}
+\contentsline {subsubsection}{Multiscale Edge Detector}{9}
+\contentsline {subsubsection}{Image Moments}{9}
+\contentsline {subsubsection}{Procedure}{11}
+\contentsline {section}{\numberline {2.3}SVM(Support Vector Machine)}{11}

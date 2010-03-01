@@ -1,0 +1,17 @@
+This is BibTeX, Version 0.99cThe top-level auxiliary file: report.aux
+A level-1 auxiliary file: intro.aux
+A level-1 auxiliary file: literature.aux
+The style file: plain.bst
+Database file #1: myrefs.bib
+I was expecting a `,' or a `}'---line 180 of file myrefs.bib
+ :  
+ :  isbn      = "0385527403"
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Warning--I didn't find a database entry for "NSS"
+Warning--I didn't find a database entry for "WL"
+Warning--I didn't find a database entry for "LAT"
+Warning--I didn't find a database entry for "MG"
+Warning--I didn't find a database entry for "GRM"
+Warning--I didn't find a database entry for "AC"
+(There was 1 error message)
