@@ -1,0 +1,102 @@
+\documentclass[a4paper,12pt]{report}
+%
+%--------------------   start of the 'preamble'
+%
+\usepackage{pslatex}
+\usepackage{setspace}
+\usepackage{subfigure}
+\usepackage{geometry}
+
+\usepackage{graphicx,amssymb,amstext,amsmath}
+%
+
+\onehalfspacing
+\geometry {left=3.5cm, right=2cm, top=3.5cm, bottom=2cm} 
+%%    homebrew commands -- to save typing
+
+\newcommand\etc{\textsl{etc}}
+\newcommand\eg{\textsl{eg.}\ }
+\newcommand\etal{\textsl{et al.}}
+\newcommand\Quote[1]{\lq\textsl{#1}\rq}
+\newcommand\fr[2]{{\textstyle\frac{#1}{#2}}}
+\newcommand\miktex{\textsl{MikTeX}}
+\newcommand\comp{\textsl{The Companion}}
+\newcommand\nss{\textsl{Not so Short}}
+%
+%---------------------   end of the 'preamble'
+%
+\begin{document}
+\pagenumbering{roman}
+
+%-----------------------------------------------------------
+
+\title{Adult Image Detection System}
+
+\author{Bibek Raj Dhakal \\ 062BCT506 \\ bibekraj9@gmail.com \and Biru Charan Sainju \\ 062BCT507 \\thugliffe@gmail.com \and Suvash Sedhain\\ 062BCT548 \\mesuvash@gmail.com } 
+
+\date{Mar 3,2010}
+\maketitle
+\begin{abstract}
+
+\pagenumbering{roman}
+
+Adult imagery or as they put it pornography has been there for a long time\ and with the advent of web it has only just grown. Pornography is considered as obscene material whose intention is to provoke sexual arousal. Pornography which was then a small publication has emerged as one of the highly distributed information on the internet. Pornography which is by no means unnatural may certainly be harmful to children and affect the efficiency of the workers. So, it should be managed and certainly shouldn't  be popping where it is not meant to. \\[0.5cm]
+
+So we propose to design a system that takes an image and detects if it is a pornographic image or not. We intend to be using SVM (Support Vector Machines) to exploit primitive information from different images and use the knowledge to determine whether given image is pornographic or not.
+\\[0.5cm]
+
+Our system will be using the skin detection model to do the prediction based on the machine learning of the images.
+
+
+\end{abstract}
+
+\listoftables 
+\listoffigures
+%-----------------------------------------------------------
+
+
+%-----------------------------------------------------------
+
+
+ %-----------------------------------------------------------
+\clearpage
+\noindent {\large Objectives:}\\[1cm]
+ Some of the major objectives of our project can be listed as 
+\begin{itemize}
+
+\item To develop a system can learn the patterns of the feature extracted from the images
+\item To use SVM to predict whether a given image Is pornographic or not based on the leanings from the previous data of the images
+\item To distinguish adult content from the non adult ones and server as a tool for filtering images
+\end{itemize}
+
+
+
+
+
+%-----------------------------------------------------------
+
+
+
+
+
+\tableofcontents
+%-----------------------------------------------------------
+\include{intro}
+\include{literature}
+
+%-----------------------------------------------------------
+
+
+
+\bibliographystyle{plain}	% (uses file "plain.bst")
+\bibliography{myrefs}		% expects file "myrefs.bib"
+
+%-----------------------------------------------------------
+%\appendix
+%\include{app4}
+%\include{app1}
+%\include{app2}
+%\include{app5}
+%\include{app3}
+%-----------------------------------------------------------
+\end{document}
