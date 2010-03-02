@@ -8,17 +8,20 @@
 \contentsline {subsubsection}{The RGB Color Space}{4}
 \contentsline {subsubsection}{The HSV Color Space}{4}
 \contentsline {subsubsection}{The YCbCr Color Spacr}{5}
-\contentsline {section}{\numberline {2.2}Non Skin Based Approach}{5}
-\contentsline {subsection}{\numberline {2.2.1}BIC}{5}
-\contentsline {subsection}{\numberline {2.2.2}MPEG-7}{6}
-\contentsline {subsubsection}{Dominant ColorDescriptor}{6}
-\contentsline {subsubsection}{DCD Extraction}{7}
-\contentsline {subsubsection}{Edge Histogram Descriptor}{7}
-\contentsline {subsection}{\numberline {2.2.3}Edge and Moment Appraoch}{8}
-\contentsline {subsubsection}{Edge Detection}{8}
-\contentsline {subsubsection}{Classical Edge Detectors}{8}
-\contentsline {subsubsection}{Sobel Edge Detector}{9}
-\contentsline {subsubsection}{Multiscale Edge Detector}{9}
-\contentsline {subsubsection}{Image Moments}{9}
-\contentsline {subsubsection}{Procedure}{11}
-\contentsline {section}{\numberline {2.3}SVM(Support Vector Machine)}{11}
+\contentsline {subsubsection}{Procedure}{5}
+\contentsline {subsubsection}{Skin Segmentation Algorithm}{5}
+\contentsline {subsubsection}{Feature selection and SVM training}{6}
+\contentsline {section}{\numberline {2.2}Non Skin Based Approach}{7}
+\contentsline {subsection}{\numberline {2.2.1}BIC}{7}
+\contentsline {subsection}{\numberline {2.2.2}MPEG-7}{9}
+\contentsline {subsubsection}{Dominant ColorDescriptor}{9}
+\contentsline {subsubsection}{DCD Extraction}{10}
+\contentsline {subsubsection}{Edge Histogram Descriptor}{10}
+\contentsline {subsection}{\numberline {2.2.3}Edge and Moment Appraoch}{11}
+\contentsline {subsubsection}{Edge Detection}{11}
+\contentsline {subsubsection}{Classical Edge Detectors}{11}
+\contentsline {subsubsection}{Sobel Edge Detector}{12}
+\contentsline {subsubsection}{Multiscale Edge Detector}{12}
+\contentsline {subsubsection}{Image Moments}{12}
+\contentsline {subsubsection}{Procedure}{14}
+\contentsline {section}{\numberline {2.3}SVM(Support Vector Machine)}{14}
