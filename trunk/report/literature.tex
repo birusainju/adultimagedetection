@@ -6,6 +6,11 @@ Current adult image filtering techniques can be classified into three categories
 \section{Skin Based Approach}
 Our human civilization has been influenced and intoxicated by the web revolution. People of every age use the web for different needs and purposes. Some use it for fun; some use it for their studies and find information while some live on it. Images are essentially part of the modern web and we all agree to the fact that a single picture is worth thousand words. We can find all sort of information on the web and it has been a part of our daily life. However, it also has abundance of images and contents that may be unsuitable for certain age groups. Finding pornographic images posted on social sites and links on study groups is not a new thing in today’s world. Pornographic images certainly need to be managed and unavailable to children and men at work.  
 
+
+ 
+
+
+
 \subsection{Skin Color Detection Method}
 The most important feature that provides clues to image content is color. Color is a low level feature, which makes it computationally inexpensive and therefore suitable for real-time object characterization, detection and localization. Generally pornographic images show a lot of skin and thus skin color is a basic feature used in detecting pornographic images. The main goal of skin color detection or classification is to build a decision rule that will discriminate between skin and non-skin pixels. Identifying skin colored pixels involves finding the range of values for which most skin pixels would fall in a given color space
 
@@ -39,10 +44,117 @@ Cr&=128+(112R -93.786G - 18.214B)
 \end{align}
 %
 
+\subsubsection{Procedure}
+
+We have implement skin based classifier for nudity detection in Images. Skin based implementation composed of
+\begin{itemize}
+\item Skin segmentation algorithm
+
+\item  Feature selection and SVM training
+\end{itemize}
+
+\subsubsection{Skin Segmentation Algorithm}
+Skin segmentation is widely used in human and face detection applications. Histogram based algorithm are very popular due to its proved efficiency.
+
+Histogram density for skin and non-skin pixels is calculated from the dataset (Compaq Dataset and manually collected images).The color of skin in the visible spectrum depends primarily on the concentration of melanin and hemoglobin. Distribution of the skin colors is affected by the ethnicity an illumination conditions. However, under arbitrary conditions of illumination the variation in skin color will be less constrained. Given a sufficiently large collection of labeled images captured under a wide variety of imaging conditions, we can model the distribution of skin and non-skin colors accurately.
+
+We constructed skin and non-skin histogram models using our classiﬁer training set of images.  Given skin and non-skin histograms we can compute the probability that a given color value belongs to the skin and non-skin classes:
+\begin{align}
+P(rbg|skin)=\frac{s[rgb]}{T_{s}} \\
+P(rbg|\neg skin)=\frac{n[rgb]}{T_{n}}
+\end{align}
+
+where s[rgb] is the pixel count contained in bin rgb of the skin histogram, n[rgb]  is the equivalent count from the non-skin histogram, and ${T_{s}}$ anmd ${T_{n}}$ are the total counts contained in the skin and non-skin histograms, respectively.
+
+From the skin and non-histogram models we can construct skin pixel classifier. Skin pixel classifier can be mathematically expressed in terms of likelihood ratio as:
+\begin{align}
+            \frac{P(rgb|skin)}{ P(rgb|\neg skin)}\ge\theta
+\end{align}
+Where $ 0\le\theta\ge1 $ is the threshold and can be adjusted to trade-off between correct detections and false positives. We can write  as $\theta$ a function of the priors and the cost of false positives and false negatives:
+
+
+\begin{align}
+\theta=\frac{c_{p}P(\neg skin)}{ c_{n}P(skin)}
+\end{align}
+     
+Where ${c_{p}}$ and ${c_{n}}$ are the application-dependant cost of false positives and false negatives, respectively. One reasonable choice of priors is $P(skin)= {T_{s}}/({T_{s}}+{T_{n}})$.
+Using the likelihood equation each pixel in and image can be classified as skin or non-skin.
+\par
+We also implemented gaussian mixture model for skin detection. we used precomputed mixture parameter \cite{citeulike:2260219}.It was found that gaussian mixture model is computationally expensive and doesn't fit into our performance requirement. 
+ 
+\subsubsection{Feature selection and SVM training}
+            We computed feature vector from the output of the skin detector and trained a classifier on these features to determine whether the image is adult or not. We tested for different set of features vector consisting of Percentage of pixels detected as skin, Average probability of the skin pixels, size in pixels of the largest connected component of skin, Number of connected components of skin etc. However, the system didn’t meet our desired accuracy.
+
+
+
+
+
+
+
 \section {Non Skin Based Approach}
 
 
 \subsection {BIC}
+BIC is a pixel classification algorithm that labels pixels into two categories Border and Interior. BIC is based upon Point image processing algorithm.
+
+The BIC approach basically composed of three main components:
+\begin{itemize}
+\item a simple and powerful image analysis algorithm that classifies image pixels as border or  interior
+
+\item a logarithmic distance to compare histograms
+
+\item a compact representation for the visual features extracted from images.
+
+\end{itemize}
+ 
+
+Image Analysis
+
+ 
+
+BIC image analysis algorithm relies on the RGB color-space uniformly quantized in 4X4X4=64 colors. BIC can be implemented using other color-space quantization for eg. YCbCr, HSV etc. After the quantization step, image pixels are classified as border or interior pixels. A pixel is classified as border if it is at the border of the image itself or if at least one of its 4-neighbors (top, bottom, left and right) has a different quantized color. A pixel is classified as interior if its 4-neighbors have the same quantized color. It is important to observe that this classification is mutually exclusive (either a pixel is border or it is interior) and it is based on a inherently binary visual property of the images. We choose 4-neighbors instead of 8-neighbors because, given the simplicity and generality of the problem, the use of 4-neighbors is able to reduce the image analysis complexity without perceptual losses in terms of retrieval effectiveness.
+
+After the image pixels are classified, one color histogram is computed considering only border pixels, and another color histogram is computed considering only interior pixels. In this way, we have the border/interior classification represented for each quantized color.
+
+ 
+
+ 
+
+Logarithmic Distance function
+
+Image analysis algorithm describes an image by the means of two color histogram with 64 bins. Two histogram can be combined into a single histogram with 64 bins so that vectorical distance function like L1-Norm and L2-Norm can be used to compare the visual features.
+
+Vectorical distances have also well-known limitations. One of such limitations is that a high value in a single histogram bin dominates the distance between two histograms, no matter the relative importance of this single value.To avoid the problem of high values in a single histogram bin dominate the distance between two histograms, the dLog distance function is used. This function uses a logarithm scale reducing 28 times the range of distances between the smallest and the largest histogram bin values, given that in the log-scale a bin is normalized in the interval [0,9].
+
+The dLog function compares histograms in a logarithmic scale, and is defined as:
+\begin{align}
+dLog(q,d) = \sum_{i=0}^M |f(q[i])- f(d[i])|\label{dLog}   \\
+f(x)= \left\{ 
+\begin{array}{l l}
+  0 & \quad \mbox{if $x$ =0}\\
+  1 & \quad \text {if } 0< x \le 1\\ 
+  |\log_{2}{x}| & \quad \text{,otherwise} \\
+\end{array} \right.
+\end{align}
+
+In the given equation \ref{dLog}, q and d are two histograms with M bins each. The value q[i] represents the $ i^{th}$ bin of histogram q and d[i] represent the $i^{th}$ bin of histogram d. The histogram bins are normalized between 0 and 255.
+
+ 
+
+The comparison of histograms with the dLog function does not solve the problem of histogram bins with very high values, but diminishes its effects in most of the situations. In a log-scale, the difference between the largest and the smallest distances between histogram bins becomes smaller than in the original scale. In the original scale, the smallest distance between histogram bins is zero (both images have the same amount of a particular color) and the largest distance is 255 (when the images have just one color and they are different). In our log-scale, the smallest distance is 0 and the largest distance is just 9. The range of distances in the original scale is thus 255=9 = 28 times larger than in the proposed log-scale.
+
+ 
+
+ 
+
+Compact Visual Features Representation
+
+After applying the DLog function we obtain one histogram with 2XQ bins where each bin contains integer values between 0 and 9.Each image is compactly represented by this histogram vector where each position represents a bin. Thus produced compact representation of the images can be directly plugged into SVM as a features vector.
+
+ 
+
+ 
+
 \clearpage
 \subsection {MPEG-7}
 
