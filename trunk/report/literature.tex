@@ -1,10 +1,11 @@
 \chapter{Literature Review}
-
+ \thispagestyle{myheadings}
 Current adult image filtering techniques can be classified into three categories: keyword based, blacklist based and content based. Our proposed system is content based i.e. images will be classified on the basis of their content. The classification approach we applied can be broadly classified into two categories- Skin based and non-skin based.
 
 %
 \section{Skin Based Approach}
-Our human civilization has been influenced and intoxicated by the web revolution. People of every age use the web for different needs and purposes. Some use it for fun; some use it for their studies and find information while some live on it. Images are essentially part of the modern web and we all agree to the fact that a single picture is worth thousand words. We can find all sort of information on the web and it has been a part of our daily life. However, it also has abundance of images and contents that may be unsuitable for certain age groups. Finding pornographic images posted on social sites and links on study groups is not a new thing in today’s world. Pornographic images certainly need to be managed and unavailable to children and men at work.  
+Our human civilization has been influenced and intoxicated by the web
+revolution. People of every age use the web for different needs and purposes. Some use it for fun; some use it for their studies and find information while some live on it. Images are essentially part of the modern web and we all agree to the fact that a single picture is worth thousand words. We can find all sort of information on the web and it has been a part of our daily life. However, it also has abundance of images and contents that may be unsuitable for certain age groups. Finding pornographic images posted on social sites and links on study groups is not a new thing in today's world. Pornographic images certainly need to be managed and unavailable to children and men at work.
 
 
  
@@ -23,7 +24,8 @@ The RGB color space originated from CRT display applications.  In the RGB space 
 
 
 \subsubsection{The HSV Color Space}
-The HSV (Hue, Saturation, Value/Intensity/Luminance) color space describes color with intuitive values, based on the artist’s idea of tint, saturation and tone.  This was introduced when there was a need to specify color properties numerically.  Hue defines the dominant color as described by wavelength, for instance the distinction between red and yellow.   Saturation measures the colorfulness of an area in proportion to its brightness such as the distinction between red and pink.   Value refers to the color luminance, the distinction between a dark red and a light  red. For skin detection, the value component is discarded to eliminate the undesirable effect of uneven illumination.  The transformation is defined by
+The HSV (Hue, Saturation, Value/Intensity/Luminance) color space describes
+color with intuitive values, based on the artist's idea of tint, saturation and tone.  This was introduced when there was a need to specify color properties numerically.  Hue defines the dominant color as described by wavelength, for instance the distinction between red and yellow.   Saturation measures the colorfulness of an area in proportion to its brightness such as the distinction between red and pink.   Value refers to the color luminance, the distinction between a dark red and a light  red. For skin detection, the value component is discarded to eliminate the undesirable effect of uneven illumination.  The transformation is defined by
 
 \begin{align}
 H&=\arccos\frac{\frac{1}{2} (R-G)+ (R-B)}{\sqrt{(R-G)^2 + (R-B)(G-B)}}\\
@@ -34,9 +36,10 @@ V&=\frac{R+G+ B}{3}
 Some studies show that HSV is invariant to highlights at white light sources, to matte surfaces, and ambient lighting. However, hue discontinuities and the computation of the luminance component conflict badly with the properties of color vision.
 
 \subsubsection{The YCbCr Color Spacr}
-YCbCr or Y′CbCr is a family of color spaces used as a part of the color image pipeline in video and digital photography systems. Y′ is the luma component and CB and CR are the blue-difference and red-difference chroma  components. Y' (with prime) is distinguished from Y which is luminance, meaning that light intensity is non-linearly encoded using gamma.
+YCbCr is a family of color spaces used as a part of the color image pipeline in video and digital photography systems. Y' is the luma component and CB and CR are the blue-difference and red-difference chroma  components. Y' (with prime) is distinguished from Y which is luminance, meaning that light intensity is non-linearly encoded using gamma.
 
-Y'CbCr is not an absolute color space, it is a way of encoding RGB information. The actual color displayed depends on the actual RGB colorants used to display the signal. Therefore a value expressed as Y′CbCr is only predictable if standard RGB colorants or an ICC profile are used.The transformation from RGB to YCbCr is defined by
+Y'CbCr is not an absolute color space, it is a way of encoding RGB information.
+The actual color displayed depends on the actual RGB colorants used to display the signal. Therefore a value expressed as Y'CbCr is only predictable if standard RGB colorants or an ICC profile are used.The transformation from RGB to YCbCr is defined by
 \begin{align}
 Y'&=16+ (65.481R + 128.553G + 24.966B)\\
 Cb&=128+(-37.797R- 74.203G +112B)\\
@@ -58,7 +61,8 @@ Skin segmentation is widely used in human and face detection applications. Histo
 
 Histogram density for skin and non-skin pixels is calculated from the dataset (Compaq Dataset and manually collected images).The color of skin in the visible spectrum depends primarily on the concentration of melanin and hemoglobin. Distribution of the skin colors is affected by the ethnicity an illumination conditions. However, under arbitrary conditions of illumination the variation in skin color will be less constrained. Given a sufficiently large collection of labeled images captured under a wide variety of imaging conditions, we can model the distribution of skin and non-skin colors accurately.
 
-We constructed skin and non-skin histogram models using our classiﬁer training set of images.  Given skin and non-skin histograms we can compute the probability that a given color value belongs to the skin and non-skin classes:
+We constructed skin and non-skin histogram models using our classifier training
+set of images.  Given skin and non-skin histograms we can compute the probability that a given color value belongs to the skin and non-skin classes:
 \begin{align}
 P(rbg|skin)=\frac{s[rgb]}{T_{s}} \\
 P(rbg|\neg skin)=\frac{n[rgb]}{T_{n}}
@@ -80,15 +84,89 @@ Where $ 0\le\theta\ge1 $ is the threshold and can be adjusted to trade-off betwe
 Where ${c_{p}}$ and ${c_{n}}$ are the application-dependant cost of false positives and false negatives, respectively. One reasonable choice of priors is $P(skin)= {T_{s}}/({T_{s}}+{T_{n}})$.
 Using the likelihood equation each pixel in and image can be classified as skin or non-skin.
 \par
-We also implemented gaussian mixture model for skin detection. we used precomputed mixture parameter \cite{citeulike:2260219}.It was found that gaussian mixture model is computationally expensive and doesn't fit into our performance requirement. 
+We also implemented gaussian mixture model for skin detection. we used
+precomputed mixture parameter \cite{Statistical}.It was found that gaussian
+mixture model is computationally expensive and doesn't fit into our performance requirement.
  
 \subsubsection{Feature selection and SVM training}
-            We computed feature vector from the output of the skin detector and trained a classifier on these features to determine whether the image is adult or not. We tested for different set of features vector consisting of Percentage of pixels detected as skin, Average probability of the skin pixels, size in pixels of the largest connected component of skin, Number of connected components of skin etc. However, the system didn’t meet our desired accuracy.
+            We computed feature vector from the output of the skin detector and trained a classifier on these features to
+             determine whether the image is adult or not. We tested for different set of features vector 
+             consisting of Percentage of pixels detected as skin, Average probability of the skin pixels, 
+             size in pixels of the largest connected component of skin, Number of connected components of skin etc. 
+             However, the system didn't meet our desired accuracy.
 
+\subsection{Gaussian Mixture Model}
+Mixture model is a probabilistic model for density estimation. A mixture model can be regarded as a 
+type of unsupervised learning. Mixture models consist of collection of component function, usually 
+Gaussian. These component functions are combined to provide a multimodal density. They can be employed
+ to model the skin colour distribution in order to perform colour-based skin segmentation. A mixture
+  density function is expressed as the sum of gaussian kernels:
+\begin{align}
+P(x)=\sum_{i=0}^N w_{i} \frac{1}{(2\pi)^\frac{3}{2} \|\sum_{i}\|^\frac{1}{2}}
+e^ \frac{1 (x-\mu_{i})^T \sum_{i}^-1(x-\mu_{i})}{2} ,
+\end{align}
+Where x is an RGB color vector and the contribution of $i^{th}$  Gaussian is
+determined by a scalar weight $w_{i}$ , mean vector $\mu_{i}$ and diagonal
+covariance matrix $\sum_{i}$ .
 
+For modeling skin and non skin classes 16 Gaussian models were used. During
+this project we used pre-computed \cite{Statistical} Gaussian parameter for skin
+and non skin models.
 
+\begin{table}[h]
+\begin{tabular}{|c|c|c|c|}
+\hline
+Kernel &Mean &CoVariance &Weight \\ \hline
 
+1 &(73.53,29.94,17.76) &(765.40,121.44,112.80) &0.0294 \\
+2 &(249.71,233.94,217.49) &(39.94,154.44,396.05) &0.0331 \\
+3 &(161.68,116.25,96.95) &(291.03,60.48,162.85) &0.0654 \\
+4 &(186.07,136.62,114.40) &(274.95,64.60,198.27) &0.0756 \\
+5 &(189.26,98.37,51.18) &(633.18,222.40,250.69) &0.0554 \\
+6 &(247.00,152.20,90.84) &(65.23,691.53,609.92) &0.0314 \\
+7 &(150.10,72.66,37.76) &(408.63,200.77,257.57) &0.0454 \\
+8 &(206.85,171.09,156.34) &(530.08,155.08,572.79) &0.0469 \\
+9 &(212.78,152.82,120.04) &(160.57,84.52,243.90) &0.0956 \\
+10 &(234.87,175.43,138.94) &(163.80,121.57,279.22) &0.0763 \\
+11 &(151.19,97.74,74.59) &(425.40,73.56,175.11) &0.1100 \\
+12 &(120.52,77.55,59.82) &(330.45,70.34,151.82) &0.0676 \\
+13 &(192.20,119.62,82.32) &(152.76,92.14,259.15) &0.0755 \\
+14 &(214.29,136.08,87.24) &(204.90,140.17,270.19) &0.0500 \\
+15 &(99.57,54.33,38.06) &(448.13,90.18,151.29) &0.0667 \\
+16 &(238.88,203.08,176.91) &(178.38,156.27,404.99) &0.0749 \\
+\hline
+\end{tabular}
+\caption{Mixture Of Gaussian Skin Color model}
+\label{tab:GMMSkin}
+\end{table} 
 
+\newpage
+
+\begin{table}[h]
+\begin{tabular}{|c|c|c|c|}
+\hline
+Kernel &Mean &CoVariance &Weight \\ \hline
+1 &(254.37,254.41,253.82) &(2.77,2.81,5.46) &0.0637 \\
+2 &(9.39,8.09,8.52) &(46.84,33.59,32.48) &0.0516 \\
+3 &(96.57,96.95,91.53) &(280.69,156.79,436.58) &0.0864 \\
+4 &(160.44,162.49,159.06) &(355.98,115.89,591.24) &0.0636 \\
+5 &(74.98,63.23,46.33) &(414.84,245.95,361.27) &0.0747 \\
+6 &(121.83,60.88,18.31) &(2502.24,1383.53,237.18) &0.0365 \\
+7 &(202.18,154.88,91.04) &(957.42,1766.94,1582.52) &0.0349 \\
+8 &(193.06,201.93,206.55) &(562.88,190.23,447.28) &0.0649 \\
+9 &(51.88,57.14,61.55) &(344.11,191.77,433.40) &0.0656 \\
+10 &(30.88,26.84,25.32) &(222.07,118.65,182.41) &0.1189 \\
+11 &(44.97,85.96,131.95) &(651.32,840.52,963.67) &0.0362 \\
+12 &(236.02,236.27,230.70) &(225.03,117.29,331.95) &0.0849 \\
+13 &(207.86,191.20,164.12) &(494.04,237.69,533.52) &0.0368 \\
+14 &(99.83,148.11,188.17) &(955.88,654.95,916.70) &0.0389 \\
+15 &(135.06,131.92,123.10) &(350.35,130.30,388.43) &0.0943 \\
+16 &(135.96,103.89,66.88) &(806.44,642.20,350.36) &0.0477 \\
+\hline
+\end{tabular}
+\caption{Mixture Of Gaussian Non-Skin Color model}
+\label{tab:GMMNonSkin}
+\end{table} 
 
 
 \section {Non Skin Based Approach}
@@ -116,8 +194,19 @@ BIC image analysis algorithm relies on the RGB color-space uniformly quantized i
 
 After the image pixels are classified, one color histogram is computed considering only border pixels, and another color histogram is computed considering only interior pixels. In this way, we have the border/interior classification represented for each quantized color.
 
- 
+\begin{figure}[h]
+\centering
+  \includegraphics{BIC}
+  \caption  {Neighbour BIC Classification}
+   \label{BIC}
+\end{figure} 
 
+Grayed pixel as shown in figure is classified by comparing to its four neighbors (black squares)
+ to classify whether the pixel is interior or Boundary. A pixel is classified as interior if its 
+ 4-neighbors have the same quantized color. It is important to observe that this classification is 
+ mutually exclusive (either a pixel is border or it is interior). The four neighboring BIC 
+ classification can be extended to 8- neighbor scheme. However due to the simplicity and performance 
+ we choose 4-neighbors scheme 
  
 
 Logarithmic Distance function
@@ -161,13 +250,13 @@ After applying the DLog function we obtain one histogram with 2XQ bins where eac
 
 
 The MPEG-7 standard\cite{Mpeg} is an international standard since September 2001
-which speciﬁes metadata for describing multimedia content. The interest-
-ing part for our project is this part of the standard which deﬁnes visual
+which specifies metadata for describing multimedia content. The interest-
+ing part for our project is this part of the standard which defines visual
 descriptors. These are structures to describe multimedia data. Their exact
 extraction methods are not standardized.  shows an overview of
 MPEG-7 visual descriptors which are suitable for still images.
 Since 2001, lots of research has been conducted on making use of these
-standardized visual descriptors in the ﬁeld of Computer Vision, especially in
+standardized visual descriptors in the field of Computer Vision, especially in
 Content-Based Image Retrieval Systems 
 \begin{figure}[h]
   \centering
@@ -208,7 +297,9 @@ FC Copenhagen     & 6 & 2 & 1  \\
 
 \end{table}
 \subsubsection{DCD Extraction}
-The  extraction  procedure  for  the dominant  color  uses  the Generalized Lloyd Algorithm (GLA)\cite{vector}  to  cluster  the  pixel  color  values. After  defining  the  colors,  for  each  image implement the following steps:
+The  extraction  procedure  for  the dominant  color  uses  the Generalized
+Lloyd Algorithm (GLA)\cite{vector}  to  cluster  the  pixel  color  values.
+After  defining  the  colors,  for  each  image implement the following steps:
 \begin{itemize}
 \item Read  in  the  image  and  create  an  image  array  that 
 contains  the RGB components of each pixel  in  the 
@@ -233,9 +324,8 @@ image
 The EHD represents the spatial distribution of edges in an image. The extraction process of the EHD consists of the following stages:
 \begin{itemize}
 \item The edges in each image-block is categorized into one of the following
-	six types: vertical, horizontal, 45◦
-diagonal, 135◦
-diagonal, nondirectional edge and no-edge. (See Figure 8)
+	six types: vertical, horizontal, 45 degree diagonal, 135 degree diagonal,
+	nondirectional edge and no-edge. (See Figure 8)
 \item Now a 5-bin edge histogram of each subimage can be obtained. (See \ref{ehd})
 \item Each bin value is normalized by the total number of image-blocks in the image.
 \item The normalized bin values are nonlinearly quantized.
@@ -252,8 +342,142 @@ diagonal, nondirectional edge and no-edge. (See Figure 8)
 \end{figure}
 \end{itemize}
 
+\subsubsection{Color Structure descriptor}
+%
+This descriptor expresses local color structure in an image
+using an 8 x 8-structuring element. It counts the number of
+times a particular color is contained within the structuring
+element as the structuring element scans the image. Suppose
+$c_{0},c_{1},c_{2},\ldots c_{M-1} $ denote the M quantized colors. A color
+structure histogram can then be denoted by $h(m)$,m=0,1,2,\ldots M-1 where the
+value in each bin represents the number of structuring elements in the image containing one
+or more pixels with color $c_{m}$. The HMMD color space is used
+in this descriptor.
+\begin{table}[h]
+\begin{tabular}{| c | c | c |c |}
+\hline
+S/No.              & Red &Green &Blue   \\
+\hline
+Manchester United & 6 & 4 & 0   \\
+Celtic            & 6 & 3 & 0    \\
+FC Porto           & 6 & 2 & 1   \\
+FC Copenhagen     & 6 & 2 & 1  \\
+\end{tabular}
 
-\subsection {Edge and Moment Appraoch}
+\caption{ HMMD COLOR SPACE QUANTIZATION FOR CSD }
+\label{HMMD-table}
+\end{table}
+The CSD is defined using four color space quantization oper-
+ating points: 184, 120, 64, and 32 bins. To construct a 184-level
+quantized color, HMMD color space is quantized nonuniformly
+as follows. The whole HMMD color space is divided into five
+subspaces. This sub-space division is performed on the diff pa-
+rameter (see Section III-A). For the respective subspaces, uni-
+form color quantization on the Hue and Sum values results in a
+184-level color quantization. The number of quantization levels
+for each subspace for different number of histogram bins is
+given in table ~\ref{HMMD-table}. \\
+
+In order to compute the CSD, an 8x8-structuring element is used. Even though the
+total number of samples is kept fixed at 64, the spatial extent of the structuring element scales with
+the image size. The following simple rule determines the spatial
+extent of the structuring element (equivalently, the sub sampling
+factor) given the image size:
+\begin{align}
+	&p=max \{0,round(0.5log_{2}WH-8)\} \nonumber \\
+	&k=2^p, E=8K                     
+\end{align}
+where\\
+W,H \quad image width and height, respectively;\\
+ExE \quad spatial extent of the structuring element; \\
+K   \qquad sub-sampling factor.\\
+For images smaller than 256x256 pixels, an 8x8 element
+with no sub-sampling is used. As another example, if the image
+size is 640x480, then p=1,K=2 and E=16. So,
+every alternate sample along the rows and columns of a 16x16
+-structuring element is then used to compute the histogram.
+\\
+Each bin of the CSD h(m) represents
+the number of locations of the structuring element at which a
+pixel with color $c_{m}$ falls inside the element. The origin of the
+structure element is defined by its top-left sample. The locations
+of the structure element over which the descriptor is accumu-
+lated are defined by the grid of pixels of the possibly sub-sam-
+pled input image.Structurin element is as shown in fig~\ref{fig:structuring_element} 
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=5in]{Mpeg7}
+\caption{Structuring element for images}
+\label{fig:structuring_element}
+\end{figure}
+%
+
+
+
+
+
+
+\subsubsection{Scalable Color Descriptor}
+%
+The SCD addresses the interoperability issue by fixing the color space to HSV, with a uniform quantization of the HSV space to 256 bins.
+The bin values are nonuniformly quantized to a 11-bit value. \\
+This method achieves full interoperability between different
+resolutions of the color representation, ranging from 16 bits/histogram at the low end to approximately 1000 bits/histogram at
+the high end.Of course, the accuracy of the feature description is
+highly dependent on the number of bits used. However, core experiments have shown that good retrieval results are still achievable using only 64 bits, while excellent results can be obtained
+using medium or full resolution of the descriptor. \\
+The HSV space is uniformly quantized into a total of 256
+bins. This includes 16 levels in H, four levels in S, and four
+levels in V. The histogram values are truncated into a 11-bit
+integer representation. To achieve a more efficient encoding, the
+11-bit integer values are first mapped into a ``nonlinear" 4-bit representation, giving higher significance to the small values
+with higher probability.
+This 4-bit representation of the 256-bin HSV histogram
+would require 1024 bits/histogram, which is too large a number
+in the context of many MPEG-7 applications. To lower this
+number and make the application scalable, the histograms are
+encoded using a Haar transform.
+The basic unit of the Haar transform consists of a sum oper-
+ation and a difference operation [see Fig. 4(a)], which relate to
+primitive low- and high-pass filters. Summing pairs of adjacent
+histogram lines is equivalent to the calculation of a histogram
+with half number of bins.\\
+The high-pass (difference) coefficients of the Haar transform
+express the information contained in finer-resolution levels
+(with higher number of bins) of the histogram. Natural image
+signals usually exhibit high redundancy between adjacent
+histogram lines. This can be explained by the “impurity”
+(slight variation) of colors caused by variable illumination and
+shadowing effects. Hence, it can be expected that the high-pass
+coefficients expressing differences between adjacent histogram
+bins usually have only small values. Exploiting this property,
+it is possible to truncate the high-pass coefficients to integer
+representation with only a low number of bits.\\
+The high-pass (difference) coefficients of the Haar transform
+express the information contained in finer-resolution levels
+(with higher number of bins) of the histogram. Natural image
+signals usually exhibit high redundancy between adjacent
+histogram lines. This can be explained by the ``impurity''
+(slight variation) of colors caused by variable illumination and
+shadowing effects. Hence, it can be expected that the high-pass
+coefficients expressing differences between adjacent histogram
+bins usually have only small values. Exploiting this property,
+it is possible to truncate the high-pass coefficients to integer
+representation with only a low number of bits.
+\begin{table}
+\centering
+\begin{tabular}{|c|c|}
+	
+a &b \\
+c &d  \\
+e &f  \\
+\end{tabular}
+\label{tab:CSD}
+\caption{EQUIVALENT PARTITIONING OF THE HSV COLOR SPACE}
+\end{table}
+%
+\subsubsection {Edge and Moment Appraoch}
 
 \subsubsection{Edge Detection}
 An edge in an image is a contour across which the brightness of the image changes abruptly.
@@ -341,7 +565,8 @@ These sets of equations are commonly referred as Hu set of invariant moments.\ci
 
 \subsubsection {Procedure}
 Multiscale Edge detection since sobel is just not good enough
-Process is started with the multiscale edge detection . Once the edge image is computed. we compute the normalized central moments upto order five and the translation,rotation and scale invariant based on the grayscale edge image using the definitions.A feature vector containing these 21+7=28 moments is computed and stored in the training database.\cite{Wang97}
+Process is started with the multiscale edge detection . Once the edge image is
+computed. we compute the normalized central moments upto order five and the translation,rotation and scale invariant based on the grayscale edge image using the definitions.A feature vector containing these 21+7=28 moments is computed and stored in the training database.\cite{Wang97}
 
 \section {SVM(Support Vector Machine)}
 The  central  idea  of SVM  is  the  adjustment  of  a  discriminating  function  so  that  it  optimally  uses  the  separability information of the boundary cases. Given a set of cases which belong  to one of  two classes,  training a  linear SVM consists  in  searching  for  the hyperplane  that  leaves  the  largest possible number of  cases  of  the  same  class  on  the same side, while maximizing the distance of either class from the hyperplane. If the training set is linearly separable, then a discriminant hyperplane will satisfy the inequalities:
@@ -349,5 +574,6 @@ The  central  idea  of SVM  is  the  adjustment  of  a  discriminating  function
 v_{i}(w.x_{i}+b) \geq 1
 \end{equation}
 
- where $x_{i}$  $\in$  $\Re^d$ is a  vector  of  the  training  set,  d  being  the  dimension  of  the  input  space,  and $y_{i}$  $\in$ ${\{-1,+1\}}$ is  the corresponding class. Among the separating hyperplanes, the SVM approach selects the one for which the distance to the closest point is maximal. Since  such a distance  is  $1/|\,|w|\,|$,  finding  the  hyperplane  is  equivalent  to minimizing $|\,|w|\,|^2$   under constraints (1). The points closest to the hyperplane are called Support Vectors, and the quantity   $2/|\,|w|\,|$  is called  the margin  (  see Figure 2);  it can be considered a measure of  the generalization ability of  the SVM:  the larger the margin, the better the generalization is expected to be.
+ where $x_{i}$  $\in$  $\Re^d$ is a  vector  of  the  training  set,  d  being  the  dimension  of  the  input  space,  and $y_{i}$  $\in$ ${\{-1,+1\}}$ is  the corresponding class. Among the separating hyperplanes, the SVM approach selects the one for which the distance to the closest point is maximal. Since  such a distance  is  $1/|\,|w|\,|$,  finding  the  hyperplane  is  equivalent  to minimizing $|\,|w|\,|^2$   under constraints (1). 
+ The points closest to the hyperplane are called Support Vectors, and the quantity   $2/|\,|w|\,|$  is called  the margin  (  see Figure 2);  it can be considered a measure of  the generalization ability of  the SVM:  the larger the margin, the better the generalization is expected to be.
 
