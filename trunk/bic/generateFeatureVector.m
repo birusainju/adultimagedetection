@@ -8,6 +8,8 @@ function features = generateFeatureList( img )
      [ interior,interior_mask,boundary,boundary_mask ] = bicClassifier( img, 64 );
      [ hist_count ] = generateHistogramOptimized( img,interior_mask,64,128);
      [ norm_data ] = normalizeData( hist_count, 255 );
-     [ features ] = generateDlogHistogram( norm_data );
+     [ dlog_data ]= generateDlogHistogram( norm_data );
+     skin_percent = calculateSkinPercent(img);
+     features  = [dlog_data skin_percent];
      
   

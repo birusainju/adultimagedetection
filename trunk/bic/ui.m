@@ -22,7 +22,7 @@ function varargout = ui(varargin)
 
 % Edit the above text to modify the response to help ui
 
-% Last Modified by GUIDE v2.5 04-Mar-2010 04:50:22
+% Last Modified by GUIDE v2.5 08-Mar-2010 23:48:07
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -133,6 +133,15 @@ function load_button_ButtonDownFcn(hObject, eventdata, handles)
 % --- Executes on key press over classify_button with no controls selected.
 function classify_button_KeyPressFcn(hObject, eventdata, handles)
 % hObject    handle to classify_button (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+
+
+% --- Executes on button press in pushbutton5.
+function pushbutton5_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbutton5 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
