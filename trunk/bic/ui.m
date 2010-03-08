@@ -53,8 +53,8 @@ function ui_OpeningFcn(hObject, eventdata, handles, varargin)
 % varargin   command line arguments to ui (see VARARGIN)
 
 % Choose default command line output for ui
-load bic_model.mat
-handles.model = bic_model;
+load skin_scaled_bic_model.mat
+handles.model = skin_scaled_bic_model;
 handles.output = hObject;
 
 % Update handles structure
@@ -82,7 +82,7 @@ function classify_button_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
     skin_percent = calculateSkinPercent(handles.img);
     if skin_percent < 0.25
-        message = 'NonAdult'
+        message = 'NonAdult';
     else
         feature_vector = generateFeatureVector(handles.img);
         class = svmpredict(ones(1),feature_vector,handles.model);
