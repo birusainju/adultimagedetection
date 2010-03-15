@@ -53,8 +53,8 @@ function ui_OpeningFcn(hObject, eventdata, handles, varargin)
 % varargin   command line arguments to ui (see VARARGIN)
 
 % Choose default command line output for ui
-load CLdmodel.mat
-handles.model = CLDmodel;
+load CSDModel.mat
+handles.model = CSDModel;
 handles.output = hObject;
 
 % Update handles structure
@@ -84,10 +84,10 @@ function classify_button_Callback(hObject, eventdata, handles)
     if skin_percent < 0.25
         message = 'NonAdult';
     else
-        [test_label,data]=libsvmread('CLDTest.dat');
+        [test_label,data]=libsvmread('CSDTest.dat');
         feat = Descriptor(handles.img);
         data(453,:)=feat;
-        data=(data - repmat(min(data,[],1)+1,size(data,1),1))*spdiags(1./(max(data,[],1)+ 1)',0,size(data,2),size(data,2));
+        data=(data - repmat(min(data,[],1),size(data,1),1))*spdiags(1./(max(data,[],1)-min(data,[],1))',0,size(data,2),size(data,2));
         class = svmpredict(1,data(453,:),handles.model);
         if class == -1
             message = 'NonAdult';
