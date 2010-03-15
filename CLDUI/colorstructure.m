@@ -9,8 +9,8 @@ function color=colorstructure(hue,sum,dif)
         for x=1:2:240
 
             t(:) = 0;
-            for yy=y:k:y+16
-                for xx=x:k:x+16
+            for yy=y:k:y+8
+                for xx=x:k:x+8
                     if dif(xx,yy)<7
                         subspace=0;
                     elseif dif(xx,yy)>6 & dif(xx,yy)<21
