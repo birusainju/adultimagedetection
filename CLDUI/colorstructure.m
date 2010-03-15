@@ -5,11 +5,10 @@ function color=colorstructure(hue,sum,dif)
     E = 16;
     quantTable =[1,8,4,4,6,4,4,4,4,4];
     k=2;
-    for y=1:2:496
-        for x=1:2:496
-            for m=1:64
-                t(m)=0;
-            end
+    for y=1:2:240 %height-e
+        for x=1:2:240
+
+            t(:) = 0;
             for yy=y:k:y+16
                 for xx=x:k:x+16
                     if dif(xx,yy)<7
@@ -27,12 +26,9 @@ function color=colorstructure(hue,sum,dif)
                     t(m+1)=t(m+1)+1;
                 end
             end
-            for bi=1:64
-                if(t(bi)>0)
-                    h(bi)=h(bi)+1;
-                end
-            end
+  			pos = find(t >0);
+            h(pos) = h(pos)+1;
 
         end
     end
-    color=h;
+    color=h(1:54);
