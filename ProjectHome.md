@@ -1,0 +1,1 @@
+This is developed as a part of our major project. It is basically an adult image detection system using image processing and SVM for binary classification.
